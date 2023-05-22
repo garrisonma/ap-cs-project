@@ -16,19 +16,19 @@ public class Mastermind {
 		populateBoard();
 		codeMaker();
 		printRules();
-		
 		printBoard();
+		guess();
 	}
 	
 	public void populateBoard(){
-		for(String[] arr : boardLeft){
-			for(String a : arr){
-				a = " ";
+		for(int i = 0; i < boardLeft.length; i++){
+			for(int j = 0; j < boardLeft[0].length; j++){
+				boardLeft[i][j] = " ";
 			}
 		}
-		for(String[] arrr : boardRight){
-			for(String c : arrr){
-				c = " ";
+		for(int i = 0; i < boardRight.length; i++){
+			for(int j = 0; j < boardRight[0].length; j++){
+				boardRight[i][j] = " ";
 			}
 		}
 	}
@@ -58,7 +58,7 @@ public class Mastermind {
 	}
 	public void printRules(){
 		System.out.println("------------------------------WELCOME TO MASTERMIND------------------------------");
-		System.out.println("A random code has been generated, and it is your job to break it.");
+		System.out.println("A random code has been generated, and it is your job to break it!");
 		System.out.println("The code contains 4 digits, and each digit is a random number from 1-6.");
 		System.out.println("Numbers can repeat.");
 		System.out.println("You have twelve attempts to guess the code.");
@@ -76,7 +76,7 @@ public class Mastermind {
 	}
 	public void printBoard(){
 		System.out.println(" ");
-		System.out.println("Guess Board--------------------------Result Board");
+		System.out.println("  Guess Board        Result Board");
 		System.out.println(" ");
 		for(int i = 0; i< numRows; i++){
 			for(int j = 0; j < numCol; j++){
@@ -86,6 +86,27 @@ public class Mastermind {
 			for(int c = 0; c < numCol; c++){
 				System.out.print("["+ boardRight[i][c] + "] ");
 			}
+			System.out.println(" ");
+		}
+	}
+	public void guess(){
+		Scanner sc = new Scanner(System.in);
+		while(true){
+		System.out.println("Please enter a guess: ");
+		String x = sc.nextLine();
+		if(x.length() == 4){
+			if(x.substring(0,1).equals("1") || x.substring(0,1).equals("2") || x.substring(0,1).equals("3") || x.substring(0,1).equals("4") || x.substring(0,1).equals("5") || x.substring(0,1).equals("6")){
+				if(x.substring(1,2).equals("1") || x.substring(1,2).equals("2") || x.substring(1,2).equals("3") || x.substring(1,2).equals("4") || x.substring(1,2).equals("5") || x.substring(1,2).equals("6")){
+					if(x.substring(2,3).equals("1") || x.substring(2,3).equals("2") || x.substring(2,3).equals("3") || x.substring(2,3).equals("4") || x.substring(2,3).equals("5") || x.substring(2,3).equals("6")){
+						if(x.substring(3,4).equals("1") || x.substring(3,4).equals("2") || x.substring(3,4).equals("3") || x.substring(3,4).equals("4") || x.substring(3,4).equals("5") || x.substring(3,4).equals("6")){
+							break;
+						}
+					}
+				}
+			}
+			
+		}
+		System.out.println("Code is in an incorrect format. Please try again with a combination of 4 digits from 1-6.");
 		}
 	}
 	
