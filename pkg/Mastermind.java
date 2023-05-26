@@ -49,11 +49,11 @@ public class Mastermind {
 			}
 			if(i == 3){
 				code[c] = "3";
-				realCode = "3";
+				realCode += "3";
 			}
 			if(i == 4){
 				code[c] = "4";
-				realCode = "4";
+				realCode += "4";
 			}
 			if(i == 5){
 				code[c] = "5";
@@ -77,18 +77,17 @@ public class Mastermind {
 		System.out.println("After each guess, the right of the board will display the result of the guess.");
 		System.out.println("An 'A' indicates that a correct number is in the correct place.");
 		System.out.println("A 'B' indicates there is a correct number but in the wrong place.");
-		System.out.println("A 'C' indicates the number does not appear in the code.");
+		System.out.println("A empty space indicates the number does not appear in the code.");
 		System.out.println("The letter results do not correspond to a specific digit.");
 		System.out.println("Here are some examples:");
-		System.out.println("Code: 1, 3, 5, 6. Guess: 4, 2, 5, 3. Result: A, B, C, C");
-		System.out.println("Code: 1, 5, 2, 2. Guess: 3, 4, 1, 1. Result: A, C, C, C");
-		System.out.println("Code: 1, 2, 3, 4. Guess: 4, 1, 5, 3. Result: B, B, B, C");
+		System.out.println("Code: 1, 3, 5, 6. Guess: 4, 2, 5, 3. Result: A, B");
+		System.out.println("Code: 1, 5, 2, 2. Guess: 3, 4, 1, 1. Result: A");
+		System.out.println("Code: 1, 2, 3, 4. Guess: 4, 1, 5, 3. Result: B, B, B");
 		System.out.println("Good Luck!");
-		System.out.println(" ");
-		System.out.println("---------------------------------------------------------------------------------");
 	}
 	public void printBoard(){
 		System.out.println(" ");
+		System.out.println("---------------------------------------------------------------------------------");
 		System.out.println("  Guess Board        Result Board");
 		System.out.println(" ");
 		for(int i = 0; i< numRows; i++){
@@ -101,6 +100,7 @@ public class Mastermind {
 			}
 			System.out.println(" ");
 		}
+		System.out.println("---------------------------------------------------------------------------------");
 	}
 	public void guess(){
 		Scanner sc = new Scanner(System.in);
@@ -143,6 +143,7 @@ public class Mastermind {
 		for(int a = 0; a<4; a++){
 			String m = x.substring(a, a+1);
 			if(realCode.contains(m)){
+				
 				if(m.equals(b)){
 					if(a == 0){
 					realResult += "A";
@@ -156,6 +157,9 @@ public class Mastermind {
 					if(a == 1){
 					realResult += "A";
 					}
+					else if(x.substring(1,2).equals(c)){
+						realResult += "A";
+					}
 					else{
 						realResult += "B";
 					}
@@ -164,6 +168,9 @@ public class Mastermind {
 				else if(m.equals(d)){
 					if(a == 2){
 					realResult += "A";
+					}
+					else if(x.substring(2,3).equals(d)){
+						realResult += "A";
 					}
 					else{
 						realResult += "B";
@@ -174,17 +181,14 @@ public class Mastermind {
 					if(a == 3){
 					realResult += "A";
 					}
+					else if(x.substring(3).equals(e)){
+						realResult += "A";
+					}
 					else{
 						realResult += "B";
 					}
 					e = "no";
 				}
-				else{
-					realResult += "C";
-				}
-			}
-			else{
-				realResult += "C";
 			}
 		}
 		for(int i = 0; i<4; i++){
@@ -214,9 +218,7 @@ public class Mastermind {
 					realResult = realResult.substring(0,g) + realResult.substring(g+1);
 				}
 				}
-			else{
-				boardRight[currentRow][i] = "C";
-			}
+
 		}
 	
 		printBoard();
